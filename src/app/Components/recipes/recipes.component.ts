@@ -1,4 +1,4 @@
-import { Component, AfterViewInit,inject } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {DataSource} from "./DataSource";
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ import {CardRecipesComponent} from "../card-recipes/card-recipes.component";
   templateUrl: './recipes.component.html',
   styleUrl: './recipes.component.scss'
 })
-export default class RecipesComponent implements AfterViewInit {
+export default class RecipesComponent implements OnInit  {
   // Selected values for dropdowns
   prepTimeValues: string[] = [];
   cookTimeValues: string[] = [];
@@ -45,7 +45,7 @@ export default class RecipesComponent implements AfterViewInit {
   }
 
 
-  ngAfterViewInit() {
+  ngOnInit() {
     // Add click handlers for custom dropdowns
     this.setupCustomDropdowns();
     this.setupSearchFilter();
