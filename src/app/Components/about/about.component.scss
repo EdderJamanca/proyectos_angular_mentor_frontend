@@ -1,0 +1,105 @@
+@use '../../../assets/styles/partails/css-vars' as *;
+
+.about {
+  position: relative;
+  width: 100%;
+  @media (min-width: 768px) {
+    padding: 0 var(--spacing-1800);
+  }
+}
+.about-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-500);
+  padding: var(--spacing-600) var(--spacing-200);
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.about-info__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+  @media (min-width: 768px) {
+    gap: var(--spacing-500);
+  }
+  list-style: none;
+}
+
+.about-info__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+  position: relative;
+  padding-left: 32px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px; // Ajusta según necesites
+    width: 24px;
+    height: 24px;
+    background-image: url('/assets/images/icon-bullet-point.svg'); // Cambia por tu icono
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+  }
+}
+.about-bennifits {
+  display: grid;
+  grid-template-rows: 1fr;
+  gap: var(--spacing-500);
+  padding: var(--spacing-600) var(--spacing-200) var(--spacing-600) var(--spacing-200);
+  @media (min-width: 768px) {
+    gap: var(--spacing-600);
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: var(--spacing-1200) var(--spacing-400) var(--spacing-1200) var(--spacing-400);
+  }
+}
+.about-bennifits__content {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: var(--spacing-250);
+  @media (min-width: 768px) {
+    gap: var(--spacing-0);
+  }
+}
+.about-bennifits__list {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: var(--spacing-150);
+
+    &::before {
+      content: '*';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--primary-color, #333); // Puedes cambiar el color según tu paleta
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+  }
+}
+.about-bennifits__image {
+  grid-column: 2 / -1;
+}
+.about-bennifits__img {
+  width: 100%;
+  border-radius: var(--radius-12);
+}
+.cta-section {
+  display: grid;
+  grid-template-rows: 1fr;
+  gap: var(--spacing-500);
+  padding:  var(--spacing-800) var(--spacing-200) var(--spacing-0) var(--spacing-200);
+  @media (min-width: 768px) {
+    gap: var(--spacing-600);
+    padding: var(--spacing-0) var(--spacing-400) var(--spacing-0) var(--spacing-400);
+  }
+}

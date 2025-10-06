@@ -1,0 +1,20 @@
+.scroll-top-btn {
+  position: fixed;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--neutral-900);
+  background-image: url('/assets/images/icon-chevron-down.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px;
+  transform: rotate(180deg); /* rota todo el botón */
+  z-index: 100;
+  cursor: pointer;
+  display: none;
+}
+.scroll-top-btn--visible {
+  display: block;
+}

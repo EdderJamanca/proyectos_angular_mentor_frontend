@@ -1,0 +1,153 @@
+@use '../../../assets/styles/partails/css-vars' as *;
+
+/*.header__menu {
+  display: flex;
+  gap: var(--spacing-400);
+  list-style: none;
+}
+
+.header__menu-link {
+  text-decoration: none;
+  color: var(--neutral-900);
+  font-weight: 600;
+  
+  &:hover {
+    color: var(--teal-500);
+  }
+}
+
+.menu__link--active {
+  color: var(--teal-500);
+  font-weight: 700;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--teal-500);
+  }
+}*/
+
+.hero {
+
+}
+.hero__container,
+.hero-recipes__container {
+  position: relative;
+  z-index: 0;              /* crea contexto para apilar el ::before detrás */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-500);
+  padding: var(--spacing-600) var(--spacing-200) var(--spacing-0) var(--spacing-200);
+  overflow: hidden;        /* oculta las esquinas al rotar */
+  --bg-rotation: 45deg;    /* ajusta el ángulo (ej: 90deg, 180deg) */
+  text-align: center;
+  @media (min-width: 768px) {
+   // padding: 0 var(--spacing-1800);
+    padding: var(--spacing-1000) var(--spacing-0) var(--spacing-1200) var(--spacing-0);
+    margin: 0 var(--spacing-1800);
+  }
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 300px;
+  width: 100%;
+  height: 100%;
+  background: url('/assets/images/pattern-squiggle-1.svg');
+  background-repeat: no-repeat;     /* evita que se repita */
+  background-size: 100%;         /* ajusta al contenedor manteniendo proporción */
+  background-position: center top;      /* posición de la imagen */
+}
+
+.hero__content,
+.hero__image {
+  position: relative;
+  z-index: 1;
+}
+
+.m-0 {
+  margin: 0;
+}
+.mx-auto {
+  margin: 0 auto;
+}
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+  @media (min-width: 768px) {
+    gap: var(--spacing-500);
+  }
+}
+.hero__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-400);
+  @media (min-width: 768px) {
+    justify-content: center;
+    text-align: center;
+  }
+}
+.hero__actions {
+  display: none;
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+  }
+}
+.hero__image {
+  height: 100%;
+}
+
+.hero__img {
+  width: 100%;
+  height: 99%;
+  border-radius: var(--radius-12);
+  box-shadow: 0 0 0 3.45px var(--neutral-0);
+}
+.hero-about__container {
+  position: relative;
+  z-index: 0;              /* crea contexto para apilar el ::before detrás */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-500);
+  padding: var(--spacing-600) var(--spacing-200) var(--spacing-0) var(--spacing-200);
+  overflow: hidden;        /* oculta las esquinas al rotar */
+  @media (min-width: 768px) {
+    flex-direction: row;
+    padding: var(--spacing-1000) var(--spacing-0) var(--spacing-1200) var(--spacing-0);
+    margin: 0 var(--spacing-1800);
+  }
+}
+.hero-about__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+  @media (min-width: 768px) {
+    justify-content: center;
+    gap: var(--spacing-300);
+  }
+}
+.hero-about__img {
+  border-radius: var(--radius-12);
+}
+.badge {
+  padding: 4px 8px;
+  color: var(--neutral-900);
+  background-color: var(--orange-500);
+  border-radius: var(--radius-12);
+}
+.hero-recipes__info {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--spacing-150);
+  width: 100%;
+  max-width: 732px;
+  margin: 0 auto;
+}

@@ -1,0 +1,36 @@
+@use '../../../assets/styles/partails/css-vars' as *;
+
+
+.cta__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: var(--spacing-250);
+}
+.cta__actions{
+  display: flex;
+  justify-content: center;
+}
+.cta {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--neutral-200);
+  border-radius: var(--radius-12);
+  padding: var(--spacing-600) var(--spacing-200);
+  gap: var(--spacing-400);
+  @media (min-width: 375px) {
+    background-image: url('/assets/images/pattern-fork.svg'), url('/assets/images/pattern-knife.svg');
+    background-position: left -43px bottom -34px, right 17px top -79px;
+    background-repeat: no-repeat;
+    background-size: 172px 231px,172px 231px;
+    padding: var(--spacing-1200) var(--spacing-0);
+  }
+  @media (min-width: 768px) {
+    background-image: url('/assets/images/pattern-fork.svg'), url('/assets/images/pattern-knife.svg');
+    background-position: left -48px bottom -48px, right -61px top -14px;
+    background-repeat: no-repeat;
+    background-size: 314px 390px,314px 390px;
+    padding: var(--spacing-1200) var(--spacing-0);
+  }
+}

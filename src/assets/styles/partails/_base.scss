@@ -1,0 +1,166 @@
+@import "inter";
+@import "css-vars";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  min-width:100%;
+  min-height:100dvh;
+  background-color: var(--neutral-100);
+}
+ul,ol {
+  list-style: none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.header {
+  padding: var(--spacing-200);
+  border-bottom: 2px solid var(--neutral-300);
+  @media (min-width: 768px) {
+      padding: var(--spacing-400) var(--spacing-400) var(--spacing-400) var(--spacing-250);
+  }
+  @media (min-width: 1440px) {
+    padding: var(--spacing-250) 60px;
+  }
+}
+.header__logo-image {
+  width: 50%;
+  @media (min-width: 768px) {
+    width: 100%;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: var(--spacing-200) var(--spacing-400);
+  border-radius: var(--radius-10);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+.border-radius-full
+{
+  border-radius: var(--radius-full) !important;
+}
+.btn-primary {
+  background-color: var(--orange-500);
+}
+
+.btn-neutral {
+  background-color: var(--neutral-900);
+  color: var(--neutral-0);
+  &:hover {
+    background-color: var(--neutral-600);
+  }
+  &:active {
+    background-color: var(--neutral-900);
+    box-shadow: 0 0 0 3 var(--neutral-0), 0 0 0 5 var(--neutral-900);
+    outline: none;
+  }
+}
+
+.header__nav {
+  display: grid;
+  align-items: center;
+  grid-template-columns:  minmax(0, 1fr) 40px;
+  @media (min-width: 768px) {
+    grid-template-columns: 256px minmax(0, 1fr) 256px;
+  }
+}
+.header__nav .header__menu {
+  display: none;
+  cursor: pointer;
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    color: var(--neutral-900);
+  }
+}
+.header__nav .header__menu-link {
+  color: inherit;
+  padding: 8px 4px;
+  border-bottom: 4px solid transparent;
+  &:Hover {
+    border-radius: var(--radius-0);
+    border-bottom-color: var(--orange-500);
+  }
+  &:focus {
+    border-color: var(--orange-500);
+    //border-radius: var(--radius-12);
+  }
+  &.menu__link--active {
+    border-radius: var(--radius-0)!important;
+    border-bottom-color: var(--orange-500)!important;
+    border-top-color: transparent!important;
+    border-left-color: transparent!important;
+    border-right-color: transparent!important;
+  }
+}
+
+.header__cta {
+  display: none;
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: end;
+  }
+}
+.mobile-menu {
+  position: absolute;          /* el padre debe tener position: relative */
+  left: 0;
+  right: 0;
+  margin-inline: auto;         /* o margin-left/right: auto; */
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  background-color: var(--neutral-0);
+  border-radius: var(--radius-4);
+  z-index: 100;
+  @media (min-width: 768px) {
+    display: none;
+  }
+  .mobile-menu__list
+  //menu-movil
+  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    color: var(--neutral-900);
+    li {
+      width: 100%;
+      padding: 12px 8px;
+      .menu-movil__link {
+        color: inherit;
+        padding: 8px 4px;
+      }
+    }
+  }
+}
+.header__mobile-toggle {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+.mobile-menu--open {
+  display: none;
+}
+.w-full {
+  width: 100%;
+}

@@ -1,0 +1,159 @@
+<header class="header">
+    <nav class="header__nav">
+        <!--===  logo    ===-->
+        <a routerLink="/Home"
+           class="header__logo-link"
+           aria-label="Ir a la pagina principal">
+            <img
+                    src="assets/images/logo.svg"
+                    alt="logo" class="header__logo-image">
+        </a>
+        <!--==== endlogo ===-->
+        <!--==== menu ===-->
+        <ul class="header__menu">
+            <li class="header__menu-item">
+                <a class="header__menu-link"
+                   routerLink="/home"
+                   routerLinkActive="menu__link--active"
+                   (click)="nextMenu(Menu.HOME)"
+                   >Home</a>
+            </li>
+            <li>
+                <a class="header__menu-link"
+                   routerLink="/about"
+                   routerLinkActive="menu__link--active"
+                   (click)="nextMenu(Menu.ABOUT)"
+                   >About</a>
+            </li>
+            <li>
+                <a class="header__menu-link"
+                   routerLink="/recipes"
+                   routerLinkActive="menu__link--active"
+                   (click)="nextMenu(Menu.RECIPES)"
+                   >Recipes</a>
+            </li>
+        </ul>
+        <!--==== end menu ===-->
+        <!--==== btn browse recipes     ===-->
+        <div class="header__cta">
+            <a href="/recipes"
+               class="btn btn-neutral">
+                <span>Browse recipes</span>
+            </a>
+        </div>
+        <!--==== end btn browse recipes ===-->
+        <!--==== menu movil     ===-->
+        <button class="header__mobile-toggle"
+                type="button"
+                aria-label="Abrir menú"
+                (click)="toggleMobileMenu()"
+                aria-controls="primary-navigation">
+            <img class="icon"
+                 src="assets/images/icon-hamburger-menu.svg"
+                 alt=""
+                 width="24"
+                 height="24">
+        </button>
+        <!--==== end menu movil ===-->
+    </nav>
+</header>
+<!--==== option menu movil ===-->
+<div class="mobile-menu"
+     [class.mobile-menu--open]="isMenuOpen()"
+>
+    <ul class="mobile-menu__list">
+        <li  (click)="selectFromMobileMenu(Menu.HOME)">
+            <a class="mobile-menu__link"
+               routerLink="home">Home</a>
+        </li>
+        <li (click)="selectFromMobileMenu(Menu.ABOUT)">
+            <a class="mobile-menu__link"  routerLink="about">About</a>
+        </li>
+        <li (click)="selectFromMobileMenu(Menu.RECIPES)">
+            <a class="mobile-menu__link"  routerLink="recipes">Recipes</a>
+        </li>
+    </ul>
+    <div class="mobile-menu__cta">
+        <a (click)="closeMobileMenu()"
+                routerLink="/recipes" class="btn btn-neutral">
+            <span>Browse recipes</span>
+        </a>
+    </div>
+</div>
+<!--==== end option menu movil ===-->
+<section class="hero" *ngIf="selectMenu()===Menu.HOME">
+    <div class="hero__container">
+        <div class="hero__content">
+            <div class="hero__info">
+                <h1 class="text-present-1 m-0">Healthy meals, zero fuss</h1>
+                <p class="text-present-6">
+                    Discover eight quick, whole-food recipes that you can cook tonight—no processed junk, no guesswork.
+                </p>
+            </div>
+            <div class="hero__actions">
+                <button class="btn btn-neutral">
+                    Start exploring
+                </button>
+            </div>
+        </div>
+        <div class="hero__image">
+            <img class="hero__img"
+                 alt="Selección de comidas saludables en una mesa"
+                 src="assets/images/image-home-hero-large.webp"
+                 loading="eager"
+                 decoding="async"
+                 fetchpriority="high"
+            />
+        </div>
+    </div>
+</section>
+<!--===== sección about ====--->
+<section class="hero-about" *ngIf="selectMenu()===Menu.ABOUT">
+    <div class="hero-about__container">
+        <div class="hero-about__content">
+            <div>
+                <span class="badge">Our mission</span>
+            </div>
+            <h2 class="text-present-2">
+                Help more people cook nourishing meals,
+                more often.
+            </h2>
+            <div class="hero-about__info">
+                <p class="text-present-6">
+                    Healthy Recipe Finder was created to prove that healthy eating can be convenient, affordable, and genuinely delicious.
+                </p>
+                <p class="text-present-6">
+                    We showcase quick, whole-food dishes that anyone can master—no
+                    fancy equipment, no ultra-processed shortcuts—just honest ingredients
+                    and straightforward steps.
+                </p>
+            </div>
+        </div>
+        <div class="hero-about__image">
+            <img class="hero-about__img"
+                 alt="Imagen de un persona cocinando"
+                 src="assets/images/image-about-our-mission-large.webp"
+                 decoding="async"
+                 fetchpriority="high"
+            />
+        </div>
+    </div>
+</section>
+<!--===== end sección about ====--->
+<!--===== sección recipes ====--->
+<section class="hero-recipes" *ngIf="selectMenu()===Menu.RECIPES">
+    <div class="hero-recipes__container">
+        <div class="hero-recipes__info">
+            <h2 class="text-present-2">Explore our simple, healthy recipes</h2>
+
+            <p class="text-present-6">
+                Discover eight quick, whole-food dishes that fit
+                real-life schedules and taste amazing. Use the search bar
+                to find a recipe by name or ingredient, or simply scroll the
+                list and let something delicious catch your eye.
+            </p>
+        </div>
+    </div>
+</section>
+<!--===== end sección recipes ====--->
+

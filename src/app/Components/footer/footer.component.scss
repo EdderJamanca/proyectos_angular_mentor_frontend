@@ -1,0 +1,30 @@
+@use '../../../assets/styles/partails/css-vars' as *;
+
+.footer {
+  margin: 0 auto;
+  padding: var(--spacing-500) var(--spacing-200) var(--spacing-250) var(--spacing-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--spacing-300);
+  @media (min-width: 375px) {
+    flex-direction: row-reverse;
+    padding: var(--spacing-500) var(--spacing-400);
+    justify-content: space-between;
+  }
+  @media (min-width: 768px) {
+    flex-direction: row-reverse;
+    margin: var(--spacing-0) auto;
+    padding: var(--spacing-500) 0;
+    width: 100%;
+    max-width: 1192px;
+  }
+}
+.footer__nav {
+  display: flex;
+  gap: var(--spacing-200);
+  @media (min-width: 375px) {
+
+  }
+}

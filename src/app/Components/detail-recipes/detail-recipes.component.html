@@ -1,0 +1,94 @@
+<section class="detail-recipes">
+    <nav>
+        <a [routerLink]="['/recipes']"
+           class="text-present-7">Recipes</a>
+        <span class="text-present-7">/</span>
+        <span *ngIf="recipe" class="text-present-6">{{recipe.title}}</span>
+    </nav>
+    
+    <!-- Loading indicator when recipe is not yet loaded -->
+    <div class="loading-indicator" *ngIf="!recipe">
+        <p>Loading recipe details...</p>
+    </div>
+    
+    <!-- Error message if recipe is null after loading attempt -->
+    <div class="error-message" *ngIf="recipe === null">
+        <p>Recipe not found. Please try another recipe.</p>
+        <a [routerLink]="['/recipes']" class="btn">Back to Recipes</a>
+    </div>
+    
+    <!-- Recipe content when recipe is available -->
+    <div class="recipe-content" *ngIf="recipe">
+        <div class="recipe-image">
+            <img [src]="recipe.img" [alt]="recipe.alt_img" />
+        </div>
+
+        <div class="recipe-details">
+            <div class="recipe-header">
+                <h2 class="text-present-2">{{recipe.title}}</h2>
+                <p class="text-present-6">{{recipe.description}}</p>
+            </div>
+            <div class="recipe-times">
+                <ul class="recipe-times__list">
+                    <li  class="recipe-times__item"
+                            *ngFor="let time of recipe.listTime">
+                        <img [src]="time.img" [alt]="time.alt_img" class="icon-clock">
+                        <span class="text-present-6">{{time.description}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="recipe-ingredients">
+                <h2 class="text-present-4">Ingredients:</h2>
+                <ul class="recipe-ingredients__list">
+                    <li  class="text-present-6 recipe-ingredients__item"
+                            *ngFor="let ingredient of recipe.ingredients"> {{ingredient.description}}</li>
+                </ul>
+            </div>
+
+            <div class="recipe-instructions">
+                <h2 class="text-present-4">Instructions:</h2>
+                <ul class="recipe-instructions__list">
+                    <li  class="text-present-6 recipe-instructions__item"
+                            *ngFor="let instruction of recipe.instructions"> {{instruction.description}}</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="more-recipes" *ngIf="moreRecipe && moreRecipe.length > 0">
+        <h2 class="text-present-3">More recipes</h2>
+        <div class="more-recipes__list">
+            <div class="more-recipes__item" *ngFor="let recipe of moreRecipe">
+                <app-card-recipes [recipe]="recipe"></app-card-recipes>
+            </div>
+            <!-- Pagination controls -->
+            <div class="pagination" *ngIf="totalPages > 1">
+                <button class="pagination__btn" 
+                        [disabled]="currentPage === 1"
+                        (click)="prevPage()">
+                    &lt; Previous
+                </button>
+                
+                <div class="pagination__pages">
+                    <button *ngFor="let page of getPageNumbers()" 
+                            class="pagination__page-btn"
+                            [class.active]="currentPage === page"
+                            (click)="goToPage(page)">
+                        {{ page }}
+                    </button>
+                </div>
+                
+                <button class="pagination__btn" 
+                        [disabled]="currentPage === totalPages"
+                        (click)="nextPage()">
+                    Next &gt;
+                </button>
+                
+                <div class="pagination__info" *ngIf="filteredRecipes.length > 0">
+                    Showing {{ getStartIndex() + 1 }}-{{ getEndIndex() }} of {{ filteredRecipes.length }} recipes
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

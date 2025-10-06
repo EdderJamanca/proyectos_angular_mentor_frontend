@@ -1,0 +1,106 @@
+<section class="recipes">
+    <!--===== FILTRO        =====-->
+    <section class="filters">
+        <div class="filter-select">
+            <!-- Max Prep Time Custom Dropdown -->
+            <div class="custom-dropdown">
+                <div class="custom-dropdown__header">Max Prep Time</div>
+                <div class="custom-dropdown__options">
+                    <div class="custom-dropdown__option">
+                        <input type="checkbox" id="minute-1" name="filter-prep-time" value="1"/>
+                        <label for="minute-1">0 minutes</label>
+                    </div>
+                    <div class="custom-dropdown__option">
+                        <input type="checkbox" id="minute-2" name="filter-prep-time" value="2"/>
+                        <label for="minute-2">5 minutes</label>
+                    </div>
+                    <div class="custom-dropdown__option">
+                        <input type="checkbox" id="minute-3" name="filter-prep-time" value="3"/>
+                        <label for="minute-3">10 minutes</label>
+                    </div>
+                    <div class="custom-dropdown__option clear-option">
+                        <label for="minute-clear">Clear</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Max Cook Time Custom Dropdown -->
+            <div class="custom-dropdown">
+                <div class="custom-dropdown__header">Max Cook Time</div>
+                <div class="custom-dropdown__options">
+                    <div class="custom-dropdown__option">
+                        <input type="checkbox" id="prep-minute-1" name="filter-cook-time" value="1"/>
+                        <label for="prep-minute-1">0 minutes</label>
+                    </div>
+                    <div class="custom-dropdown__option">
+                        <input type="checkbox" id="prep-minute-2" name="filter-cook-time" value="2"/>
+                        <label for="prep-minute-2">5 minutes</label>
+                    </div>
+                    <div class="custom-dropdown__option">
+                        <input type="checkbox" id="prep-minute-3" name="filter-cook-time" value="3"/>
+                        <label for="prep-minute-3">10 minutes</label>
+                    </div>
+                    <div class="custom-dropdown__option">
+                        <input type="checkbox" id="prep-minute-4" name="filter-cook-time" value="4"/>
+                        <label for="prep-minute-4">15 minutes</label>
+                    </div>
+                    <div class="custom-dropdown__option">
+                        <input type="checkbox" id="prep-minute-5" name="filter-cook-time" value="5"/>
+                        <label for="prep-minute-5">15 minutes</label>
+                    </div>
+                    <div class="custom-dropdown__option clear-option">
+                        <label for="prep-minute-clear">Clear</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="filter-search">
+            <div class="filter-search__input-container">
+                <img
+                        src="assets/images/icon-search.svg"
+                        alt="Search by name or ingredient"
+                        class="filter-search__icon" />
+                <input
+                        type="text"
+                        id="filter-search-input"
+                        name="filter-search"
+                        class="filter-search__input"
+                        placeholder="Search by name or ingredient…">
+            </div>
+        </div>
+
+    </section>
+    <!--===== END FILTRO    =====-->
+    <!--===== LIST PROD     =====-->
+    <section class="list-products">
+        @for (recipe of recipes; track recipe.id) {
+            <app-card-recipes [recipe]="recipe"></app-card-recipes>
+        }
+        <!-- Pagination controls -->
+        <div class="pagination" *ngIf="totalPages > 1">
+            <button class="pagination__btn"
+                    [disabled]="currentPage === 1"
+                    (click)="prevPage()">
+                &lt; Previous
+            </button>
+
+            <div class="pagination__pages">
+                <button *ngFor="let page of getPageNumbers()"
+                        class="pagination__page-btn"
+                        [class.active]="currentPage === page"
+                        (click)="goToPage(page)">
+                    {{ page }}
+                </button>
+            </div>
+
+            <button class="pagination__btn"
+                    [disabled]="currentPage === totalPages"
+                    (click)="nextPage()">
+                Next &gt;
+            </button>
+        </div>
+    </section>
+    <!--===== END LIST PROD =====-->
+
+</section>

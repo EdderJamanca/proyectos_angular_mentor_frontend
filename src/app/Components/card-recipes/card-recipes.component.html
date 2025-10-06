@@ -1,0 +1,33 @@
+<div class="card-product">
+    <div class="card-product__image">
+        <img
+                [src]="recipe.img"
+                [alt]="recipe.alt_img"
+                class="card-product__img" />
+
+    </div>
+    <div class="card-product__body">
+        <div class="card-product__content">
+            <h5 class="text-present-5">{{getTruncatedTitle(recipe.title,35)}}</h5>
+            <p class="text-present-9">
+                {{recipe.description}}
+            </p>
+        </div>
+        <div class="card-product__times">
+            <ul>
+                <li *ngFor="let time of recipe.listTime" class="text-present-7">
+                    <img
+                            [src]="time.img"
+                            [alt]="time.alt_img"
+                            class="icon-clock">
+                    {{time.description}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-product__foote">
+        <button
+                (click)="viewRecipe(recipe.id)"
+                class="btn btn-neutral w-full border-radius-full">View Recipe</button>
+    </div>
+</div>

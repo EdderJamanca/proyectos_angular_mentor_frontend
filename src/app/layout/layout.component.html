@@ -1,0 +1,13 @@
+<section class="container">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+</section>
+<div class="scroll-top-btn"
+     [class.scroll-top-btn--visible]="showScrollTop()"
+     (click)="scrollToTop()"
+     type="button"
+     aria-label="Volver al inicio de la página"
+     title="Volver arriba"
+>
+</div>
