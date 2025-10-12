@@ -1,3 +1,4 @@
+@use '../styles' as *;
 .container {
   padding: var(--spacing-500) var(--spacing-300);
   min-height: 100vh;
@@ -87,4 +88,9 @@
     grid-row: 1/-1;
   }
 }
-
+.card-icom {
+  text-align: end;
+}
+.card-description{
+  @extend .text-preset-5;
+}
