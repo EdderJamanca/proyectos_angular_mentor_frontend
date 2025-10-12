@@ -90,6 +90,10 @@
 }
 .card-icom {
   text-align: end;
+  img {
+    width: 64px;
+    height: 64px;
+  }
 }
 .card-description{
   @extend .text-preset-5;
