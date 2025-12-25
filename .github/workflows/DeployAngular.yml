@@ -61,6 +61,7 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: administrator
           password: ${{ secrets.SERVER_PASS }}
+          port: '22'
           source: "dist/mi-app/*"
           target: ${{ secrets.SERVER_PATH_FRONTEND }}
 
