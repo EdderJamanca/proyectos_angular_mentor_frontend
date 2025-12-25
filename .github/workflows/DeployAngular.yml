@@ -25,6 +25,15 @@ jobs:
         run:
           type npm-debug.log
           
+      - name: Debug secrets
+        run: |
+          if [ -z "${{ secrets.SERVER_PASS }}" ]; then
+            echo "❌ SERVER_PASS está vacío"
+            exit 1
+          else
+            echo "✅ SERVER_PASS detectado"
+          fi
+          
       - name: Deploy a IIS
         uses: appleboy/scp-action@v0.1.7
         with: 
