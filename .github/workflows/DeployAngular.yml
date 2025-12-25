@@ -1,25 +1,29 @@
-name: Deploy Angular to IIS
+name: Deploy Angular
 
 on:
   push:
     branches:
       - buscadorRecetas
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Clonar el repositorio
-      - name: Checkout código
+      - name: Checkout Código
         uses: actions/checkout@v4
 
-      # 2️⃣ Instalar Node.js
-      - name: Instalar Node
+      - name: Instalar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.20'
+          node-version: '22.20.0'
+      - name: Instalar dependencias
+        run:
+          npm install || true
 
+      - name: Mostrar logs de npm-debug
+        if: failure()
+        run:
+          type npm-debug.log
       # 3️⃣ Ver estructura del repo (DEBUG)
       - name: Ver estructura del repo
         run: |
@@ -60,3 +64,6 @@ jobs:
           port: 22
           source: "dist/mi-app/*"
           target: ${{ secrets.SERVER_PATH_FRONTEND }}
+
+
+
