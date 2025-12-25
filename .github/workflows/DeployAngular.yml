@@ -59,7 +59,7 @@ jobs:
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_IP }}
-          username: administrator
+          username: Administrator
           password: ${{ secrets.SERVER_PASS }}
           port: '22'
           source: "dist/mi-app/*"
