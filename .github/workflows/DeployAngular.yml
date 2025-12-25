@@ -1,0 +1,37 @@
+name: Deploy Angular
+
+on: 
+  push: 
+    branches: 
+      - buscadorRecetas
+jobs:
+  deploy:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Código 
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with: 
+          node-version: '20'
+      - name: Instalar dependencias
+        run: |
+          cd FrontEnd
+          npm install
+      - name: Build Angular production
+        run: |
+           npm run build -- --configuration production
+          
+      - name: Deploy a IIS
+        uses: appleboy/scp-action@v0.1.7
+        with: 
+           host: ${{secredts.SERVER_IP}}
+           username: ${{secredts.SERVER_USER}}
+           password: ${{secredts.SERVER_PASS}}
+           sources: "frontend/dist/mi-app/*"
+           target: ${{secrets.SERVER_PATH_FRONTEND}}
+           
+
+        
