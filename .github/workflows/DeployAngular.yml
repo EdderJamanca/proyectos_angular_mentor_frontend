@@ -54,15 +54,37 @@ jobs:
             echo "✅ SERVER_PASS detectado"
           fi
 
-      # 8️⃣ Deploy a IIS (AWS Windows)
-      - name: Deploy a IIS
+      # 6️⃣ Comprimir build Angular en ZIP
+      - name: Crear ZIP del build
+        run: |
+          cd dist
+          zip -r frontend.zip mi-app
+          mv frontend.zip ..
+
+      # 7️⃣ Verificar ZIP creado
+      - name: Verificar ZIP
+        run: |
+          ls -lh frontend.zip
+
+      # 8️⃣ Verificar secrets
+      - name: Debug secrets
+        run: |
+          if [ -z "${{ secrets.SERVER_PASS }}" ]; then
+            echo "❌ SERVER_PASS está vacío"
+            exit 1
+          else
+            echo "✅ SERVER_PASS detectado"
+          fi
+
+      # 9️⃣ Enviar ZIP al servidor Windows (IIS) 
+      - name: Deploy ZIP a IIS
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_IP }}
           username: Administrator
           password: ${{ secrets.SERVER_PASS }}
           port: '22'
-          source: "dist/mi-app/*"
+          source: "frontend.zip"
           target: ${{ secrets.SERVER_PATH_FRONTEND }}
 
 
