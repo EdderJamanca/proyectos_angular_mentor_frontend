@@ -76,7 +76,7 @@ jobs:
             echo "✅ SERVER_PASS detectado"
           fi
 
-      # 9️⃣ Enviar ZIP al servidor Windows (IIS)
+      # 9️⃣ Enviar ZIP al servidor Windows (IIS) 
       - name: Deploy ZIP a IIS
         uses: appleboy/scp-action@v0.1.7
         with:
