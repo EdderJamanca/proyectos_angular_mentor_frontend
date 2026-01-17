@@ -4,60 +4,30 @@ on:
   push:
     branches:
       - buscadorRecetas
+
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
-      - name: Checkout Código
+      - name: Checkout código
         uses: actions/checkout@v4
 
       - name: Instalar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.20.0'
-      - name: Instalar dependencias
-        run:
-          npm install || true
+          node-version: '18'
 
-      - name: Mostrar logs de npm-debug
-        if: failure()
-        run:
-          type npm-debug.log
-      # 3️⃣ Ver estructura del repo (DEBUG)
-      - name: Ver estructura del repo
-        run: |
-          pwd
-          ls -la
-      # 4️⃣ Instalar dependencias Angular
       - name: Instalar dependencias
         run: npm install
 
-      # 5️⃣ Build Angular producción
-      - name: Build Angular
+      - name: Build Angular producción
         run: npm run build -- --configuration production
 
-      # 6️⃣ Verificar build generado (DEBUG)
-      - name: Ver archivos generados
+      - name: Verificar build generado
         run: |
-          echo "Contenido de dist:"
-          ls -R dist
-      # 7️⃣ Verificar secrets (DEBUG)
-      - name: Debug secrets
+          dir dist
+
+      - name: Deploy a IIS (local)
         run: |
-          if [ -z "${{ secrets.SERVER_PASS }}" ]; then
-            echo "❌ SERVER_PASS está vacío"
-            exit 1
-          else
-            echo "✅ SERVER_PASS detectado"
-          fi
-      # 8️⃣ Deploy a IIS (AWS Windows)
-      - name: Deploy a IIS
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: Administrator
-          password: ${{ secrets.SERVER_PASS }}
-          port: '22'
-          source: "dist/mi-app/*"
-          target: ${{ secrets.SERVER_PATH_FRONTEND }}
+          robocopy dist\mi-app C:\Frontend /MIR
